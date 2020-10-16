@@ -1,0 +1,6 @@
+{
+    "appname": "研究服务",
+    "namespace": "rs",
+    "debug": true,
+    "port": 3000
+}

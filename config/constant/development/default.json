@@ -1,0 +1,12 @@
+{
+    "appname": "研究服务",
+    "namespace": "rs",
+    "debug": true,
+    "host": "localhost",
+    "port": 3000,
+    "proxy":{
+        "/rest": {
+            "target": "https://zs-test.csc108.com/rest"
+        }
+    }
+}
