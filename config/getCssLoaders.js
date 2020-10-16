@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const getCSSModuleLocalIdent = require("./getCSSModuleLocalIdent");
 const isDev = process.env.NODE_ENV !== 'production'
 
-
 const handleCssLoaders = (cssOptions) => [
     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
     {
@@ -52,6 +51,9 @@ const cssLoaders = [
                 loader: 'less-loader',
                 options: {
                     sourceMap: isDev,
+                    lessOptions:{
+                        javascriptEnabled: true,
+                    }
                 },
             },
         ],

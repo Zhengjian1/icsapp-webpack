@@ -5,15 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isDev = process.env.NODE_ENV !== 'production'
 const PROJECT_PATH = process.cwd();
 
-const pattern = path.join(PROJECT_PATH, "src/pages", '/**/*.js');
+const pattern = path.join(PROJECT_PATH, "src/pages", '/**/**/app.js');
 const entries = {};
 const htmlPlugin = [];
 
 glob.sync(pattern).forEach(file => {
-    const name = path.basename(file, '.js');
+    const paths = file.split("/");
+    const name = paths[paths.length - 2];
 
     try {
-        entries[name] = `${process.cwd()}/src/pages/${name}.js`;
+        entries[name] = `${process.cwd()}/src/pages/${name}/app.js`;
         htmlPlugin.push(
             new HtmlWebpackPlugin({
                 template: path.resolve(process.cwd(), './public/index.html'),
