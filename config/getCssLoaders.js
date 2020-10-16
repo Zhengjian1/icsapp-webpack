@@ -1,13 +1,13 @@
 const px2rem = require('postcss-px2rem-exclude');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const getCSSModuleLocalIdent = require("./getCSSModuleLocalIdent");
-const isDev = process.env.NODE_ENV !== 'production'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const getCSSModuleLocalIdent = require('./getCSSModuleLocalIdent');
+const isDev = process.env.NODE_ENV !== 'production';
 
 const handleCssLoaders = (cssOptions) => [
     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
     {
         loader: 'css-loader',
-        options: cssOptions
+        options: cssOptions,
     },
     {
         loader: 'postcss-loader',
@@ -18,18 +18,17 @@ const handleCssLoaders = (cssOptions) => [
                 require('postcss-flexbugs-fixes'),
                 require('postcss-preset-env')({
                     autoprefixer: {
-                        grid: true,
-                        flexbox: 'no-2009'
+                        flexbox: 'no-2009',
                     },
                     stage: 3,
                 }),
-                require('postcss-normalize'),
+                require('postcss-normalize')(),
                 px2rem({ remUnit: 75, exclude: /node_modules/i }),
             ],
             sourceMap: isDev,
-        }
+        },
     },
-]
+];
 
 const cssLoaders = [
     {
@@ -46,18 +45,18 @@ const cssLoaders = [
     {
         test: /\.less$/,
         use: [
-            ...handleCssLoaders({importLoaders: 2}),
+            ...handleCssLoaders({ importLoaders: 2 }),
             {
                 loader: 'less-loader',
                 options: {
                     sourceMap: isDev,
-                    lessOptions:{
+                    lessOptions: {
                         javascriptEnabled: true,
-                    }
+                    },
                 },
             },
         ],
     },
-]
+];
 
 module.exports = cssLoaders;

@@ -8,6 +8,9 @@
 
 # 启动
 - npm i
+- npm run devdll
+- npm start
+
 
 
 

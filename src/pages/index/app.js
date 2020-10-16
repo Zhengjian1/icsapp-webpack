@@ -2,7 +2,8 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'lib-flexible';
-import Layout from './layout/';
+import '../commoncss/reset.css';
+import Layout from './layout/index';
 
 if (module && module.hot) {
     module.hot.accept();
