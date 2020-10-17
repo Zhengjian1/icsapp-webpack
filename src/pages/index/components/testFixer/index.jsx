@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './index.css';
 
-const { hostname } = process.NODE_ENV.hostname;
+const { hostname } = process.NODE_ENV;
 
 function TestFixer() {
     return (

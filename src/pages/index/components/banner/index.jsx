@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel, WingBlank } from 'antd-mobile';
+import ErrorBoundary from '@/components/errorBoundary';
 
 class Banner extends React.PureComponent {
     state = {
@@ -25,8 +26,8 @@ class Banner extends React.PureComponent {
                                 style={{ width: '100%', verticalAlign: 'top' }}
                                 onLoad={() => {
                                     // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                    this.setState({ imgHeight: 'auto' });
+                                    // window.dispatchEvent(new Event('resize'));
+                                    // this.setState({ imgHeight: 'auto' });
                                 }}
                             />
                         </a>
@@ -37,4 +38,4 @@ class Banner extends React.PureComponent {
     }
 }
 
-export default Banner;
+export default ErrorBoundary(Banner);
