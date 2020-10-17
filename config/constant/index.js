@@ -9,7 +9,7 @@ const pattern = path.join(__dirname, env, '/**/*.json');
 const os = require('os');
 const configs = {};
 
-glob.sync(pattern).forEach(file => {
+glob.sync(pattern).forEach((file) => {
     const name = path.basename(file, '.json');
 
     try {

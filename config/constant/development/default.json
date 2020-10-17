@@ -4,7 +4,7 @@
     "debug": true,
     "host": "localhost",
     "port": 3000,
-    "proxy":{
+    "proxy": {
         "/rest": {
             "target": "https://zs-test.csc108.com/rest"
         }

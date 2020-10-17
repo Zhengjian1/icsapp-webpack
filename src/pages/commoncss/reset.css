@@ -109,36 +109,8 @@ a:active {
     color: #004276;
 }
 
-/* :global {
-    & .clear {
-        clear: both;
+:global {
+    & .title {
+        color: red;
     }
-    & .clearfix {
-        zoom: 1;
-    }
-    & .clearfix:after {
-        content: '.';
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-    & .col_w1000 {
-        width: 1000px;
-        margin: 0 auto;
-    }
-    & .col_w640 {
-        width: 640px;
-        margin-top: 30px;
-    }
-    & .col_w300 {
-        width: 300px;
-        margin-top: 30px;
-    }
-    & .fl {
-        float: left;
-    }
-    & .fr {
-        float: right;
-    }
-} */
+}

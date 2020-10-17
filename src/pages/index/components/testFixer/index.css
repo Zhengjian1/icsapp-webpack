@@ -1,8 +1,22 @@
 .title {
+    background-color: #cccccc;
+}
+
+.wrap {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100px;
+    height: 300px;
     font-size: 30px;
+    line-height: 50px;
+}
+
+.loc_title {
+    composes: title;
+}
+
+.global_title {
+    composes: title from global;
 }

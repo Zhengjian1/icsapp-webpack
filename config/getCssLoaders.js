@@ -1,6 +1,10 @@
+const nextcss = require('postcss-cssnext');
+const postImport = require('postcss-import');
+const postcssFlexBugs = require('postcss-flexbugs-fixes');
+const postcssPresetEnv = require('postcss-preset-env');
+const postcssNormalize = require('postcss-normalize');
 const px2rem = require('postcss-px2rem-exclude');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const getCSSModuleLocalIdent = require('./getCSSModuleLocalIdent');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const handleCssLoaders = (cssOptions) => [
@@ -14,16 +18,25 @@ const handleCssLoaders = (cssOptions) => [
         options: {
             ident: 'postcss',
             plugins: () => [
-                // 修复一些和 flex 布局相关的 bug
-                require('postcss-flexbugs-fixes'),
-                require('postcss-preset-env')({
+                postImport(),
+                nextcss({
+                    browsers: ['last 2 versions', 'IOS >= 8', 'android>= 4'],
+                }),
+                postcssFlexBugs,
+                postcssPresetEnv({
                     autoprefixer: {
                         flexbox: 'no-2009',
                     },
                     stage: 3,
                 }),
-                require('postcss-normalize')(),
-                px2rem({ remUnit: 75, exclude: /node_modules/i }),
+                // Adds PostCSS Normalize as the reset css with default options,
+                // so that it honors browserslist config in package.json
+                // which in turn let's users customize the target behavior as per their needs.
+                postcssNormalize(),
+                px2rem({
+                    remUnit: 75,
+                    exclude: /node_modules/i,
+                }),
             ],
             sourceMap: isDev,
         },
@@ -38,7 +51,7 @@ const cssLoaders = [
             sourceMap: isDev,
             importLoaders: 1,
             modules: {
-                getLocalIdent: getCSSModuleLocalIdent,
+                localIdentName: isDev ? '[path][name]_[local]' : '[local]-[hash:base64:8]',
             },
         }),
     },

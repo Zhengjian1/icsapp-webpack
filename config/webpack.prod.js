@@ -1,14 +1,12 @@
-const { merge } = require('webpack-merge')
-const { resolve } = require('path')
-const WebpackBar = require('webpackbar')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const glob = require('glob')
-const PurgeCSSPlugin = require('purgecss-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const { merge } = require('webpack-merge');
+const { resolve } = require('path');
+const WebpackBar = require('webpackbar');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const common = require('./webpack.common.js')
+const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 
 module.exports = merge(common, {
@@ -25,12 +23,8 @@ module.exports = merge(common, {
             color: '#fa8c16',
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].css',
-            ignoreOrder: false,
-        }),
-        new PurgeCSSPlugin({
-            paths: glob.sync(`${resolve(PROJECT_PATH, './src')}/**/*.{js,jsx,less,css}`, { nodir: true }),
+            filename: 'css/[name].[hash].css',
+            chunkFilename: 'css/[id].[hash].css',
         }),
     ],
     optimization: {
@@ -40,13 +34,13 @@ module.exports = merge(common, {
                 extractComments: false,
                 terserOptions: {
                     compress: { pure_funcs: ['console.log'] },
-                }
+                },
             }),
-            new OptimizeCssAssetsPlugin()
+            new OptimizeCssAssetsPlugin(),
         ].filter(Boolean),
         splitChunks: {
             chunks: 'all',
             name: true,
         },
-    }
-})
+    },
+});

@@ -1,24 +1,25 @@
-const { resolve } = require('path')
-const webpack = require('webpack')
+const { resolve } = require('path');
+const webpack = require('webpack');
 // const CopyPlugin = require('copy-webpack-plugin')
-const getCssLoaders = require("./getCssLoaders.js")
+const getCssLoaders = require('./getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
-const { entries, htmlPlugin } = require("./getMultiPage.js")
-const configs = require("./constant/index.js")
+const { entries, htmlPlugin } = require('./getMultiPage.js');
+const configs = require('./constant/index.js');
 
 module.exports = {
     entry: entries,
     resolve: {
-        extensions: ['.js', '.jsx', "json"],
+        extensions: ['.jsx', '.js', 'json'],
         alias: {
             '@/src': resolve(PROJECT_PATH, './src'),
             '@/components': resolve(PROJECT_PATH, './src/components'),
-        }
+        },
+        modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
     module: {
         rules: [
             {
-                test: /\.(tsx?|js)$/,
+                test: /\.(jsx?|js)$/,
                 loader: 'babel-loader',
                 options: { cacheDirectory: true },
                 exclude: /node_modules/,
@@ -49,14 +50,13 @@ module.exports = {
                     },
                 ],
             },
-
-        ]
+        ],
     },
     plugins: [
         ...htmlPlugin,
         new webpack.DefinePlugin({
-            "process.NODE_ENV": JSON.stringify(configs)
-        })
+            'process.NODE_ENV': JSON.stringify(configs),
+        }),
         // new CopyPlugin({
         //     patterns: [
         //         {
@@ -68,4 +68,4 @@ module.exports = {
         //     ],
         // }),
     ],
-}
+};
