@@ -7,6 +7,12 @@ const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
 
 module.exports = {
+    stats:{
+        children: false,
+        chunks: false,
+        modules: false,
+        warnings: false,
+    },
     entry: entries,
     resolve: {
         extensions: ['.jsx', '.js', 'json'],

@@ -6,7 +6,7 @@ function TestFixer() {
         <div className={style.wrap}>
             <div className={style.loc_title}>使用局部title</div>
             <div className={style.global_title}>使用全局title</div>
-            测试flex是否自动加前缀33
+            测试flex是否自动加前缀
         </div>
     );
 }
