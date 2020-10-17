@@ -13,6 +13,11 @@
     line-height: 50px;
 }
 
+.test {
+    font-size: 40px;
+    color: red;
+}
+
 .loc_title {
     composes: title;
 }

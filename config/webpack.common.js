@@ -19,6 +19,7 @@ module.exports = {
         alias: {
             '@/src': resolve(PROJECT_PATH, './src'),
             '@/components': resolve(PROJECT_PATH, './src/components'),
+            "@/images":resolve(PROJECT_PATH, './src/images'),
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
@@ -32,30 +33,18 @@ module.exports = {
             },
             ...getCssLoaders,
             {
-                test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif|mp3)$/,
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10 * 1024,
-                            name: '[name].[contenthash:8].[ext]',
-                            outputPath: 'assets/images',
+                            limit: 100,
+                            name: 'assets/[name].[hash:8].[ext]',
+                            esModule:false
                         },
                     },
                 ],
-            },
-            {
-                test: /\.(ttf|woff|woff2|eot|otf)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            name: '[name].[contenthash:8].[ext]',
-                            outputPath: 'assets/fonts',
-                        },
-                    },
-                ],
-            },
+            }
         ],
     },
     plugins: [

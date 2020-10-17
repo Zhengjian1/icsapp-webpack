@@ -22,7 +22,7 @@ class Demo extends React.PureComponent {
 
         return (
             <div
-                style={{ background: '#000', color: '#fff', width: '100px', height: '100px' }}
+                style={{ background: '#000', color: '#ccc', width: '100px', height: '100px', fontSize: '20PX' }}
                 title={this.state.aa.b.c}
                 onClick={this.handleClick}>
                 点我，我要报错！

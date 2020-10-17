@@ -6,14 +6,6 @@ class Banner extends React.PureComponent {
         data: ['1', '2', '3'],
         imgHeight: 176,
     };
-    componentDidMount() {
-        // simulate img loading
-        setTimeout(() => {
-            this.setState({
-                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-            });
-        }, 100);
-    }
     render() {
         return (
             <WingBlank>
@@ -28,7 +20,7 @@ class Banner extends React.PureComponent {
                             href="http://www.alipay.com"
                             style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}>
                             <img
-                                src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                                src={require(`../../assets/${val}.png`)}
                                 alt=""
                                 style={{ width: '100%', verticalAlign: 'top' }}
                                 onLoad={() => {

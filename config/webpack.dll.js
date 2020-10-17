@@ -10,7 +10,7 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     entry: {
-        dll: ['react', 'react-dom', 'prop-types'],
+        dll: ['react', 'react-dom', 'antd-mobile', 'prop-types'],
     },
     output: {
         path: path.join(PROJECT_PATH, 'dist'),

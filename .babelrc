@@ -3,8 +3,11 @@
         [
             "@babel/preset-env",
             {
-                // 防止babel将任何模块类型都转译成CommonJS类型，导致tree-shaking失效问题
-                "modules": false
+                "targets": {
+                    "browsers": ["node 9"]
+                },
+                "modules": "commonjs",
+                "debug": false
             }
         ],
         "@babel/preset-react"
@@ -33,6 +36,7 @@
         "@babel/plugin-transform-object-assign",
         "@babel/plugin-proposal-optional-chaining",
         "@babel/plugin-syntax-import-meta",
+        "@babel/plugin-proposal-export-namespace-from",
         [
             "import",
             {

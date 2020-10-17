@@ -15,6 +15,7 @@ module.exports = merge(common, {
     output: {
         filename: 'js/[name].[contenthash:8].js',
         path: resolve(PROJECT_PATH, './dist'),
+        publicPath: '/',
     },
     plugins: [
         new CleanWebpackPlugin(),
