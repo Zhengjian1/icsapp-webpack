@@ -5,7 +5,7 @@
 -   —| —| constant 配置
 -   —| src 文件项目代码
 -   —| —| pages 页面
--   使用 cssmodule 写 css，参考 src/components/App 组件
+-   使用 cssmodule 写 css
 
 # 启动
 
