@@ -1,9 +1,9 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-// const CopyPlugin = require('copy-webpack-plugin')
-const getCssLoaders = require('./getCssLoaders.js');
+const CopyPlugin = require('copy-webpack-plugin')
+const getCssLoaders = require('./webpackUtils/getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
-const { entries, htmlPlugin } = require('./getMultiPage.js');
+const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
 
 module.exports = {
@@ -57,15 +57,15 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.NODE_ENV': JSON.stringify(configs),
         }),
-        // new CopyPlugin({
-        //     patterns: [
-        //         {
-        //             context: resolve(PROJECT_PATH, './public/favico'),
-        //             from: '*',
-        //             to: resolve(PROJECT_PATH, './dist'),
-        //             toType: 'dir',
-        //         },
-        //     ],
-        // }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    context: resolve(PROJECT_PATH, './public/asset'),
+                    from: '*',
+                    to: resolve(PROJECT_PATH, './dist'),
+                    toType: 'dir',
+                },
+            ],
+        }),
     ],
 };

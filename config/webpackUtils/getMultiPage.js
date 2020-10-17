@@ -17,7 +17,7 @@ glob.sync(pattern).forEach((file) => {
         entries[name] = `${process.cwd()}/src/pages/${name}/app.jsx`;
         htmlPlugin.push(
             new HtmlWebpackPlugin({
-                template: path.resolve(process.cwd(), './public/index.html'),
+                template: path.resolve(process.cwd(), './public/template.html'),
                 filename: `${name}.html`,
                 chunks: [name],
                 inject: 'body',

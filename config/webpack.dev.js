@@ -1,4 +1,5 @@
-const { resolve, join } = require('path');
+const { resolve } = require('path');
+const chalk = require('chalk');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const WebpackBar = require('webpackbar');
@@ -8,6 +9,7 @@ const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
+const getNetworkIp = require("./webpackUtils/getNetworkIp.js")
 
 module.exports = merge(common, {
     mode: 'development',
@@ -17,7 +19,7 @@ module.exports = merge(common, {
         path: resolve(PROJECT_PATH, './dist'),
     },
     devServer: {
-        host: configs.default.host,
+        host: getNetworkIp() || configs.default.host,
         port: configs.default.port,
         stats: 'errors-only',
         clientLogLevel: 'silent',
@@ -25,6 +27,15 @@ module.exports = merge(common, {
         open: true,
         hot: true,
         proxy: configs.default.proxy,
+        onListening: function () {
+            console.log(`
+=====================================================
+
+    ${chalk.green(`项目启动在${getNetworkIp()}:3000`)}
+    
+=====================================================
+            `);
+        },
     },
     plugins: [
         new WebpackBar({
