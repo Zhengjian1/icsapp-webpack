@@ -1,7 +1,14 @@
 import '@babel/polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '../commoncss/reset.css';
 import Layout from './layout/index';
+import dva from '../../dva/';
+import modal from './model';
 
-ReactDOM.render(<Layout />, document.querySelector('#root'));
+const app = dva();
+
+app.model(modal);
+
+app.start({
+    Layout: <Layout />,
+});

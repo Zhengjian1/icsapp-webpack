@@ -1,13 +1,11 @@
 import React from 'react';
-import Banner from '../components/banner/index';
-import List from '../components/list/index';
 import TestFixer from '../components/testFixer/index';
+import { NavBar } from 'antd-mobile';
 
 function Layout() {
     return (
         <>
-            <Banner />
-            <List />
+            <NavBar>测试</NavBar>
             <TestFixer />
         </>
     );
