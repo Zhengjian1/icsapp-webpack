@@ -9,7 +9,6 @@ const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
-const getNetworkIp = require("./webpackUtils/getNetworkIp.js")
 
 module.exports = merge(common, {
     mode: 'development',
@@ -19,7 +18,7 @@ module.exports = merge(common, {
         path: resolve(PROJECT_PATH, './dist'),
     },
     devServer: {
-        host: getNetworkIp() || configs.default.host,
+        host: configs.hostname || configs.default.host,
         port: configs.default.port,
         stats: 'errors-only',
         clientLogLevel: 'silent',
@@ -31,7 +30,7 @@ module.exports = merge(common, {
             console.log(`
 =====================================================
 
-    ${chalk.green(`项目启动在${getNetworkIp()}:3000`)}
+    ${chalk.green(`项目启动在${configs.hostname}:3000`)}
     
 =====================================================
             `);
