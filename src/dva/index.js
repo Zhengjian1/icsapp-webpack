@@ -19,7 +19,7 @@ function dva() {
     }
 
     function start(opts = {}) {
-        const { Layout } = opts;
+        const { rootComponent } = opts;
         let sagas = {};
         const rootReducer = {};
 
@@ -61,7 +61,7 @@ function dva() {
             }
         }
 
-        ReactDOM.render(<Provider store={store}>{Layout}</Provider>, document.querySelector('#root'));
+        ReactDOM.render(<Provider store={store}>{rootComponent}</Provider>, document.querySelector('#root'));
     }
 }
 

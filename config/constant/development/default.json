@@ -4,6 +4,7 @@
     "debug": true,
     "host": "127.0.0.1",
     "port": 3000,
+    "env": "development",
     "proxy": {
         "/api": {
             "target": "https://m.genshuixue.com",

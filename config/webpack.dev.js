@@ -9,7 +9,6 @@ const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
-const getHotReloadConfig = require("./webpackUtils/getHotReloadConfig.js")
 
 module.exports = merge(common, {
     mode: 'development',
@@ -37,11 +36,6 @@ module.exports = merge(common, {
 =====================================================
             `));
         },
-    },
-    module: {
-        rules: [
-            ...getHotReloadConfig,
-        ],
     },
     plugins: [
         new WebpackBar({
