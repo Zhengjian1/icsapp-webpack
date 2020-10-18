@@ -6,6 +6,7 @@ import ErrorBoundary from '@/components/errorBoundary';
 function TestSyncDva() {
     const { count } = useSelector((state) => state.index);
     const dispatch = useDispatch();
+
     return (
         <Card full>
             <Card.Header title="数据管理同步测试" extra={<span>hooks写法</span>} />

@@ -18,7 +18,15 @@ const getHotReloadConfig = [
                     search: 'export default Layout',
                     replace: `
                         let _layout = props => <Layout {...props} />;
-                        _layout = require('react-hot-loader/root').hot(_layout);
+                        const { hot } = require('react-hot-loader/root');
+                        const { setConfig } = require('react-hot-loader');
+
+                        _layout = hot(_layout);
+                        setConfig({
+                            trackTailUpdates: false, 
+                            logLevel: 'debug',
+                            // hotHooks: true,
+                        })
                         export const HotLayout = _layout
                     `,
                 },
@@ -34,7 +42,15 @@ const getHotReloadConfig = [
                     search: 'export default errorBoundary(Layout)',
                     replace: `
                         let _layout = errorBoundary(props => <Layout {...props} />);
-                        _layout = require('react-hot-loader/root').hot(_layout);
+                        const { hot } = require('react-hot-loader/root');
+                        const { setConfig } = require('react-hot-loader');
+
+                        _layout = hot(_layout);
+                        setConfig({
+                            trackTailUpdates: false, 
+                            logLevel: 'debug',
+                            // hotHooks: true,
+                        })
                         export const HotLayout = _layout
                     `,
                 },

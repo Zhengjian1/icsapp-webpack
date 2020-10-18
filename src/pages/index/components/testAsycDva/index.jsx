@@ -1,11 +1,9 @@
 import React from 'react';
 import { Card } from 'antd-mobile';
 import { connect } from 'react-redux';
-import ErrorBoundary from '@/components/errorBoundary';
 import { List } from 'antd-mobile';
 
 const Item = List.Item;
-
 @connect(({ index }) => ({ index }))
 class TestAsycDva extends React.PureComponent {
     componentDidMount() {
@@ -17,6 +15,7 @@ class TestAsycDva extends React.PureComponent {
             },
         });
     }
+
     render() {
         const { data } = this.props.index;
         return (
@@ -36,4 +35,4 @@ class TestAsycDva extends React.PureComponent {
     }
 }
 
-export default ErrorBoundary(TestAsycDva);
+export default TestAsycDva;

@@ -4,9 +4,11 @@ import qs from 'qs';
 function checkStatus(response) {
     // 处理其他状态码
 
-    if (response.status >= 200 && response.status < 500) {
+    if (response && response.status >= 200 && response.status < 500) {
         return response;
     }
+
+    console.error(response);
 }
 
 //添加请求拦截器

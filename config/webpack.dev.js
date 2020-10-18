@@ -26,7 +26,7 @@ module.exports = merge(common, {
         clientLogLevel: 'silent',
         compress: true,
         open: true,
-        hot: true,
+        // hot: true,
         proxy: configs.default.proxy,
         onListening: function () {
             console.log(chalk.green(`
