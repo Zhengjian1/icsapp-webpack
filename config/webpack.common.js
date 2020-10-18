@@ -21,6 +21,7 @@ module.exports = {
             '@/components': resolve(PROJECT_PATH, './src/components'),
             "@/images":resolve(PROJECT_PATH, './src/images'),
             "@/utils":resolve(PROJECT_PATH, './src/utils'),
+            "@/models":resolve(PROJECT_PATH, './src/models'),
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },

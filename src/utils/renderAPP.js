@@ -21,7 +21,19 @@ const handelHot = (Layout) => {
     });
 };
 
-const connectDvaAndHot = (opts) => {
+const connectDva = ({ modal, rootComponent }) => {
+    // 连接dva
+    const app = dva();
+
+    app.model(modal);
+    app.start({
+        rootComponent,
+    });
+
+    return app;
+};
+
+const renderAPP = (opts) => {
     const { modal, lazyCompentent } = opts;
     // 懒加载
     const rootComponent = handelLazy(lazyCompentent);
@@ -31,13 +43,12 @@ const connectDvaAndHot = (opts) => {
     }
 
     // 连接dva
-    const app = dva();
-
-    app.model(modal);
-    app.start({
+    const app = connectDva({
+        modal,
         rootComponent,
     });
+
     return app;
 };
 
-export default connectDvaAndHot;
+export default renderAPP;

@@ -1,12 +1,12 @@
 import '@babel/polyfill';
 import '../commoncss/reset.css';
 import { lazy } from 'react';
-import connectDvaAndHot from '@/utils/connectDvaAndHot';
-import modal from './model';
+import renderAPP from '@/utils/renderAPP';
+import modal from '@/models/demo';
 
 const Layout = lazy(() => import('./layout/index'));
 
-connectDvaAndHot({
+renderAPP({
     modal,
     lazyCompentent: Layout,
 });

@@ -22,7 +22,7 @@ class TestAsycDva extends React.PureComponent {
             <Card full>
                 <Card.Header title="数据管理异步测试" extra={<span>类写法</span>} />
                 <Card.Body>
-                    <List renderHeader={() => 'Basic Style'} className="my-list">
+                    <List renderHeader={() => '请求接口数据'} className="my-list">
                         {data.map((item) => (
                             <Item key={item.id} extra={'extra content'}>
                                 {item.name}
