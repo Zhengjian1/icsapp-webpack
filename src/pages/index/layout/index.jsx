@@ -1,12 +1,16 @@
 import React from 'react';
+import Nav from '@/components/nav/index';
 import TestFixer from '../components/testFixer/index';
-import { NavBar } from 'antd-mobile';
+import TestSyncDva from '../components/testSyncDva/index';
+import TestAsycDva from '../components/testAsycDva/index';
 
 function Layout() {
     return (
         <>
-            <NavBar>测试</NavBar>
+            <Nav />
             <TestFixer />
+            <TestSyncDva />
+            <TestAsycDva />
         </>
     );
 }

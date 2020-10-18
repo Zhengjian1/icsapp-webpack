@@ -20,6 +20,7 @@ module.exports = {
             '@/src': resolve(PROJECT_PATH, './src'),
             '@/components': resolve(PROJECT_PATH, './src/components'),
             "@/images":resolve(PROJECT_PATH, './src/images'),
+            "@/utils":resolve(PROJECT_PATH, './src/utils'),
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
@@ -50,7 +51,7 @@ module.exports = {
     plugins: [
         ...htmlPlugin,
         new webpack.DefinePlugin({
-            'process.NODE_ENV': JSON.stringify(configs),
+            'process.CONFIG': JSON.stringify(configs),
         }),
         new CopyPlugin({
             patterns: [

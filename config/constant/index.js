@@ -3,6 +3,7 @@
  */
 const glob = require('glob');
 const path = require('path');
+const internalIp = require('internal-ip');
 let env = process.env.NODE_ENV || 'development';
 
 const pattern = path.join(__dirname, env, '/**/*.json');
@@ -19,6 +20,7 @@ glob.sync(pattern).forEach((file) => {
     }
 });
 
+configs.host = internalIp.v4.sync();
 configs.hostname = os.hostname();
 configs.map = new Map();
 // console.info(JSON.stringify(configs));

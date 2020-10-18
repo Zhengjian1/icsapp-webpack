@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import createSagaMiddleware, { takeEvery, takeLatest } from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 import { handleActions } from 'redux-actions';
-import { fork } from 'redux-saga/effects';
+import { fork, takeEvery } from 'redux-saga/effects';
 
 function dva() {
     const _models = [];
@@ -36,20 +36,19 @@ function dva() {
         const store = createStore(combineReducers({ ...rootReducer }), {}, enhancer);
         sagaMiddleware.run(rootSaga);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            _models.forEach(({ subscriptions }) => {
-                if (subscriptions) {
-                    check(subscriptions, is.array, 'Subscriptions must be an array');
-                    subscriptions.forEach((sub) => {
-                        sub(store.dispatch);
-                    });
-                }
-            });
-        });
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     _models.forEach(({ subscriptions }) => {
+        //         if (subscriptions) {
+        //             subscriptions.forEach((sub) => {
+        //                 sub(store.dispatch);
+        //             });
+        //         }
+        //     });
+        // });
 
         function getWatcher(k, saga) {
             return function* () {
-                yield takeLatest(k, saga);
+                yield takeEvery(k, saga);
             };
         }
 

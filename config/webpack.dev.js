@@ -20,7 +20,7 @@ module.exports = merge(common, {
         publicPath: '/',
     },
     devServer: {
-        host: configs.hostname || configs.default.host,
+        host: configs.host || configs.default.host,
         port: configs.default.port,
         stats: 'errors-only',
         clientLogLevel: 'silent',
@@ -29,13 +29,13 @@ module.exports = merge(common, {
         hot: true,
         proxy: configs.default.proxy,
         onListening: function () {
-            console.log(`
+            console.log(chalk.green(`
 =====================================================
 
-    ${chalk.green(`项目启动在${configs.hostname}:3000`)}
+    项目启动在${configs.host}:${configs.default.port}
     
 =====================================================
-            `);
+            `));
         },
     },
     module: {

@@ -1,19 +1,8 @@
 import React from 'react';
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 
 function Nav() {
-    return (
-        <NavBar
-            mode="light"
-            icon={<Icon type="left" />}
-            onLeftClick={() => console.log('onLeftClick')}
-            rightContent={[
-                <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                <Icon key="1" type="ellipsis" />,
-            ]}>
-            NavBar
-        </NavBar>
-    );
+    return <NavBar>测试</NavBar>;
 }
 
 export default Nav;
