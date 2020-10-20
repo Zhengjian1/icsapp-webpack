@@ -4,62 +4,50 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { handleActions } from 'redux-actions';
-import { fork, takeEvery } from 'redux-saga/effects';
+import prefixNamespace from './prefixNamespace';
+import getSaga from './getSaga';
+import createPromiseMiddleware from './createPromiseMiddleware';
 
 function dva() {
-    const _models = [];
     const app = {
+        _models: [],
         model,
         start,
     };
     return app;
 
-    function model(model) {
-        _models.push(model);
+    function model(m) {
+        const prefixedModel = prefixNamespace({ ...m });
+        app._models.push(prefixedModel);
     }
 
     function start(opts = {}) {
         const { rootComponent } = opts;
-        let sagas = {};
+        let sagas = [];
         const rootReducer = {};
 
-        _models.forEach((model) => {
-            rootReducer[model.namespace] = handleActions(model.reducers || {}, model.state);
-            sagas = { ...sagas, ...model.effects };
+        app._getSaga = getSaga.bind(null);
+        app._models.forEach((m) => {
+            rootReducer[m.namespace] = handleActions(m.reducers || {}, m.state);
+            if (m.effects) {
+                sagas.push(app._getSaga(m.effects, m));
+            }
         });
 
         const sagaMiddleware = createSagaMiddleware();
+        const promiseMiddleware = createPromiseMiddleware(app);
         const enhancer = compose(
-            applyMiddleware(sagaMiddleware),
+            applyMiddleware(sagaMiddleware, promiseMiddleware),
             window.devToolsExtension ? window.devToolsExtension() : (f) => f,
         );
         const store = createStore(combineReducers({ ...rootReducer }), {}, enhancer);
-        sagaMiddleware.run(rootSaga);
+        app._store = store;
 
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     _models.forEach(({ subscriptions }) => {
-        //         if (subscriptions) {
-        //             subscriptions.forEach((sub) => {
-        //                 sub(store.dispatch);
-        //             });
-        //         }
-        //     });
-        // });
+        // Extend store
+        store.runSaga = sagaMiddleware.run;
+        store.asyncReducers = {};
 
-        function getWatcher(k, saga) {
-            return function* () {
-                yield takeEvery(k, saga);
-            };
-        }
-
-        function* rootSaga() {
-            for (var k in sagas) {
-                if (sagas.hasOwnProperty(k)) {
-                    const watcher = getWatcher(k, sagas[k]);
-                    yield fork(watcher);
-                }
-            }
-        }
+        sagas.forEach(sagaMiddleware.run);
 
         ReactDOM.render(<Provider store={store}>{rootComponent}</Provider>, document.querySelector('#root'));
     }

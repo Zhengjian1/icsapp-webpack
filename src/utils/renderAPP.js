@@ -21,11 +21,16 @@ const handelHot = (Layout) => {
     });
 };
 
-const connectDva = ({ modal, rootComponent }) => {
+const connectDva = ({ modals, rootComponent }) => {
     // 连接dva
     const app = dva();
 
-    app.model(modal);
+    if (Array.isArray(modals)) {
+        modals.forEach((modal) => app.model(modal));
+    } else {
+        app.model(modals);
+    }
+
     app.start({
         rootComponent,
     });
@@ -34,7 +39,7 @@ const connectDva = ({ modal, rootComponent }) => {
 };
 
 const renderAPP = (opts) => {
-    const { modal, lazyCompentent } = opts;
+    const { modals, lazyCompentent } = opts;
     // 懒加载
     const rootComponent = handelLazy(lazyCompentent);
     // 热更新
@@ -44,7 +49,7 @@ const renderAPP = (opts) => {
 
     // 连接dva
     const app = connectDva({
-        modal,
+        modals,
         rootComponent,
     });
 
