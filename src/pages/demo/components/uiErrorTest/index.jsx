@@ -22,11 +22,7 @@ class Demo extends React.PureComponent {
         console.log(this.state.aa.b.c);
 
         return (
-            <div
-                className={style.content}
-                style={{ background: '#000', color: '#ccc', width: '', height: '100px', fontSize: '20PX' }}
-                title={this.state.aa.b.c}
-                onClick={this.handleClick}>
+            <div className={style.content} title={this.state.aa.b.c} onClick={this.handleClick}>
                 点我，我要报错！
             </div>
         );
