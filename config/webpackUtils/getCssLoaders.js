@@ -8,7 +8,10 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const handleCssLoaders = (cssOptions) => {
     const loaders = [
-        MiniCssExtractPlugin.loader,
+        {
+            loader: MiniCssExtractPlugin.loader,
+            options:  {publicPath: '../'}
+        },
         {
             loader: 'css-loader',
             options: cssOptions,
