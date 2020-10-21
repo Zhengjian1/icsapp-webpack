@@ -19,7 +19,7 @@ module.exports = merge(common, {
     output: {
         filename: 'js/[name].js',
         path: resolve(PROJECT_PATH, './dist'),
-        publicPath: '/',
+        publicPath: './'
     },
     devServer: {
         host: configs.host || configs.default.host,

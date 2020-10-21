@@ -6,8 +6,8 @@ const px2rem = require('postcss-px2rem-exclude');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV !== 'production';
 
-const handleCssLoaders = (cssOptions) => (
-    [
+const handleCssLoaders = (cssOptions) => {
+    const loaders = [
         MiniCssExtractPlugin.loader,
         {
             loader: 'css-loader',
@@ -40,8 +40,9 @@ const handleCssLoaders = (cssOptions) => (
                 sourceMap: isDev,
             },
         },
-    ]
-)
+    ];
+    return loaders;
+}
 
 const cssLoaders = [
     {

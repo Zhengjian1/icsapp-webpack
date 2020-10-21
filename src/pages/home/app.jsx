@@ -11,6 +11,8 @@ const Layout = lazy(() => import('./layout/index'));
 
 let apirequest = new ApiRequest();
 
+// const { baseUrl } = process.CONFIG.default;
+
 apirequest
     .get('/institution/resea/tReportInfo/researchList', { type: -1 })
     .then((response) => {
