@@ -1,5 +1,6 @@
 import dva from '../dva';
 import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom';
 import Loading from '@/components/loading/index';
 const { hot } = require('react-hot-loader/root');
 const { setConfig } = require('react-hot-loader');
@@ -21,7 +22,7 @@ const handelHot = (Layout) => {
     });
 };
 
-const connectDva = ({ modals, rootComponent }) => {
+const connectDva = ({ modals, RootComponent }) => {
     // 连接dva
     const app = dva();
 
@@ -32,26 +33,31 @@ const connectDva = ({ modals, rootComponent }) => {
     }
 
     app.start({
-        rootComponent,
+        RootComponent,
     });
 
     return app;
 };
 
 const renderAPP = (opts) => {
-    const { modals, lazyCompentent } = opts;
+    const { modals = [], lazyCompentent } = opts;
     // 懒加载
-    const rootComponent = handelLazy(lazyCompentent);
-    // 热更新
+    const RootComponent = handelLazy(lazyCompentent);
+    // 热更新c
     if (env) {
         handelHot(lazyCompentent);
     }
 
-    // 连接dva
-    const app = connectDva({
-        modals,
-        rootComponent,
-    });
+    let app;
+    if (Array.isArray(modals) && modals.length === 0) {
+        ReactDOM.render(RootComponent, document.querySelector('#root'));
+    } else {
+        // 连接dva
+        app = connectDva({
+            modals,
+            RootComponent,
+        });
+    }
 
     return app;
 };

@@ -5,6 +5,7 @@ const getCssLoaders = require('./webpackUtils/getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
 const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     stats: {
@@ -41,9 +42,8 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 100,
-                            name: 'assets/[name].[hash:8].[ext]',
+                            name: isDev ? 'assets/[name].[ext]':'assets/[name].[hash:8].[ext]',
                             esModule: false,
-                            outputPath: "img",
                         },
                     },
                 ],

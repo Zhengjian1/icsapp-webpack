@@ -50,6 +50,9 @@ module.exports = merge(common, {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new HardSourceWebpackPlugin(),
+        new HardSourceWebpackPlugin.ExcludeModulePlugin({
+            test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
+        }),
         // dll
         new webpack.DllReferencePlugin({
             context: PROJECT_PATH,

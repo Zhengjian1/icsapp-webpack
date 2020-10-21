@@ -3,7 +3,6 @@ import '../commoncss/reset.css';
 import { lazy } from 'react';
 import renderAPP from '@/utils/renderAPP';
 import home from '@/models/home';
-import common from '@/models/common';
 import ApiRequest from '../../http/requests/api-request';
 import md5 from 'js-md5';
 
@@ -41,6 +40,6 @@ apirequest
     });
 
 renderAPP({
-    modals: [home, common],
+    // modals: [home],
     lazyCompentent: Layout,
 });

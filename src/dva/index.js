@@ -22,7 +22,7 @@ function dva() {
     }
 
     function start(opts = {}) {
-        const { rootComponent } = opts;
+        const { RootComponent } = opts;
         let sagas = [];
         const rootReducer = {};
 
@@ -49,7 +49,7 @@ function dva() {
 
         sagas.forEach(sagaMiddleware.run);
 
-        ReactDOM.render(<Provider store={store}>{rootComponent}</Provider>, document.querySelector('#root'));
+        ReactDOM.render(<Provider store={store}>{RootComponent}</Provider>, document.querySelector('#root'));
     }
 }
 
