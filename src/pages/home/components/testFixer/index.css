@@ -24,3 +24,9 @@
 .global_title {
     composes: title from global;
 }
+
+.img {
+    background: url('../../assets/2.png');
+    width: 100vh !important;
+    height: 200px;
+}

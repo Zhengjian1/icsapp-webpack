@@ -2,9 +2,10 @@ const { merge } = require('webpack-merge');
 const { resolve } = require('path');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
@@ -24,8 +25,8 @@ module.exports = merge(common, {
             color: '#fa8c16',
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash].css',
-            chunkFilename: 'css/[id].[hash].css',
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[id].[contenthash:8].css',
         }),
     ],
     optimization: {

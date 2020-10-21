@@ -7,7 +7,7 @@ const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
 
 module.exports = {
-    stats:{
+    stats: {
         children: false,
         chunks: false,
         modules: false,
@@ -19,9 +19,9 @@ module.exports = {
         alias: {
             '@/src': resolve(PROJECT_PATH, './src'),
             '@/components': resolve(PROJECT_PATH, './src/components'),
-            "@/images":resolve(PROJECT_PATH, './src/images'),
-            "@/utils":resolve(PROJECT_PATH, './src/utils'),
-            "@/models":resolve(PROJECT_PATH, './src/models'),
+            "@/images": resolve(PROJECT_PATH, './src/images'),
+            "@/utils": resolve(PROJECT_PATH, './src/utils'),
+            "@/models": resolve(PROJECT_PATH, './src/models'),
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
@@ -42,7 +42,7 @@ module.exports = {
                         options: {
                             limit: 100,
                             name: 'assets/[name].[hash:8].[ext]',
-                            esModule:false
+                            esModule: false
                         },
                     },
                 ],
@@ -64,5 +64,7 @@ module.exports = {
                 },
             ],
         }),
+        
+        
     ],
 };

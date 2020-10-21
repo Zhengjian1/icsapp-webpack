@@ -5,10 +5,13 @@ const { merge } = require('webpack-merge');
 const WebpackBar = require('webpackbar');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
+const proxy = require('./webpackUtils/setupProxy.js');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -26,7 +29,10 @@ module.exports = merge(common, {
         compress: true,
         open: true,
         // hot: true,
-        proxy: configs.default.proxy,
+        // proxy: configs.default.proxy,
+        before(app) {
+            proxy(app)
+        },
         onListening: function () {
             console.log(chalk.green(`
 =====================================================
@@ -56,11 +62,16 @@ module.exports = merge(common, {
                 hash: true,
             },
         ]),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[id].css',
+        }),
     ],
     optimization: {
         splitChunks: {
             chunks: 'all',
             name: true,
+            // allChunks: true
         },
     },
 });

@@ -5,17 +5,17 @@ import style from './nav.css';
 
 @connect(({ common }) => ({ common }))
 class Nav extends PureComponent {
-    componentDidMount() {
-        const { fromPage, fetchPayload, dispatch } = this.props;
+    // componentDidMount() {
+    //     const { fromPage, fetchPayload, dispatch } = this.props;
 
-        dispatch({
-            type: 'common/fetch',
-            payload: {
-                ...fetchPayload,
-                fromPage,
-            },
-        });
-    }
+    //     dispatch({
+    //         type: 'common/fetch',
+    //         payload: {
+    //             ...fetchPayload,
+    //             fromPage,
+    //         },
+    //     });
+    // }
 
     renderTabs = (data) => {
         return data.map((item) => (
