@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>icsapp-webpack</title>
     <script>
-        (function (win, doc) {
+        (function(win, doc) {
             var docEl = doc.documentElement;
 
             function setRemUnit() {
@@ -22,14 +22,14 @@
 
             var resetRemUnit = null;
 
-            win.addEventListener('resize', function () {
+            win.addEventListener('resize', function() {
                 clearTimeout(resetRemUnit);
-                resetRemUnit = setTimeout(setRemUnit, 200)
+                resetRemUnit = setTimeout(setRemUnit, 200);
             }, false);
-            win.addEventListener('pageshow', function (e) {
+            win.addEventListener('pageshow', function(e) {
                 if (e.persisted) {
                     clearTimeout(resetRemUnit);
-                    resetRemUnit = setTimeout(setRemUnit, 200)
+                    resetRemUnit = setTimeout(setRemUnit, 200);
                 }
             }, false);
 
@@ -53,7 +53,7 @@
             if (doc.readyState === 'complete') {
                 doc.body.style.fontSize = 12 + 'px';
             } else {
-                doc.addEventListener('DOMContentLoaded', function (e) {
+                doc.addEventListener('DOMContentLoaded', function(e) {
                     doc.body.style.fontSize = 12 + 'px';
                 }, false);
             }
@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <script src="./vconsole.min.js"></script>
+<script src="./vconsole.min.js"></script>
 <script>
     let debug = '@debug';
     let vConsole;
@@ -94,15 +94,15 @@
         if (window.AlipayJSBridge) {
             callback && callback();
         } else {
-            document.title = '中信建投机构服务APP'
+            document.title = '中信建投机构服务APP';
             document.addEventListener('AlipayJSBridgeReady', callback, false);
         }
     }
 
-    ready(function () {
+    ready(function() {
     });
 </script>
-<div id="root"></div>
+<div id="root" style="height:100vh;width:100%"></div>
 </body>
 
 </html>

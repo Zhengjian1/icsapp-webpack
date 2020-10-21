@@ -16,7 +16,7 @@
             }
         },
         "/local": {
-            "target": "'http://localhost:8080/spu",
+            "target": "http://localhost:8080/spu",
             "secure": false,
             "changeOrigin": true,
             "pathRewrite": {
