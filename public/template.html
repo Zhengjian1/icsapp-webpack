@@ -1,65 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="shortcut icon" href="favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>icsapp-webpack</title>
-        <script>
-            (function (win, doc) {
-                var docEl = doc.documentElement;
-    
-                function setRemUnit () {
-                    var docWidth = docEl.clientWidth;
-                    var rem = docWidth / 10;
-                    // 按照iphone X的高度定制最大宽度
-                    if (docWidth >= 812) {
-                        rem = 81.2;
-                    }
-                    docEl.style.fontSize = rem + 'px';
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>icsapp-webpack</title>
+    <script>
+        (function (win, doc) {
+            var docEl = doc.documentElement;
+
+            function setRemUnit() {
+                var docWidth = docEl.clientWidth;
+                var rem = docWidth / 10;
+                // 按照iphone X的高度定制最大宽度
+                if (docWidth >= 812) {
+                    rem = 81.2;
                 }
-    
-                var resetRemUnit = null;
-    
-                win.addEventListener('resize', function () {
+                docEl.style.fontSize = rem + 'px';
+            }
+
+            var resetRemUnit = null;
+
+            win.addEventListener('resize', function () {
+                clearTimeout(resetRemUnit);
+                resetRemUnit = setTimeout(setRemUnit, 200)
+            }, false);
+            win.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
                     clearTimeout(resetRemUnit);
                     resetRemUnit = setTimeout(setRemUnit, 200)
-                }, false);
-                win.addEventListener('pageshow', function (e) {
-                    if (e.persisted) {
-                        clearTimeout(resetRemUnit);
-                        resetRemUnit = setTimeout(setRemUnit, 200)
-                    }
-                }, false);
-    
-                setRemUnit();
-    
-                if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
-                    var testEl = doc.createElement('div');
-                    var fakeBody = doc.createElement('body');
-    
-                    testEl.style.border = '0.5px solid transparent';
-                    fakeBody.appendChild(testEl);
-                    docEl.appendChild(fakeBody);
-                    
-                    if (testEl.offsetHeight === 1) {
-                        docEl.classList.add('hairlines');
-                    }
-                    
-                    docEl.removeChild(fakeBody);
                 }
-    
-                if (doc.readyState === 'complete') {
+            }, false);
+
+            setRemUnit();
+
+            if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
+                var testEl = doc.createElement('div');
+                var fakeBody = doc.createElement('body');
+
+                testEl.style.border = '0.5px solid transparent';
+                fakeBody.appendChild(testEl);
+                docEl.appendChild(fakeBody);
+
+                if (testEl.offsetHeight === 1) {
+                    docEl.classList.add('hairlines');
+                }
+
+                docEl.removeChild(fakeBody);
+            }
+
+            if (doc.readyState === 'complete') {
+                doc.body.style.fontSize = 12 + 'px';
+            } else {
+                doc.addEventListener('DOMContentLoaded', function (e) {
                     doc.body.style.fontSize = 12 + 'px';
-                } else {
-                    doc.addEventListener('DOMContentLoaded', function(e) {
-                        doc.body.style.fontSize = 12 + 'px';
-                    }, false);
-                }
-            }) (window, document);
-        </script>
-    </head>
-    <body>
-        <div id="root"></div>
-    </body>
+                }, false);
+            }
+        })(window, document);
+    </script>
+</head>
+
+<body>
+    <script src="./vconsole.min.js"></script>
+<script>
+    let debug = '@debug';
+    let vConsole;
+    //调试阶段打开日志打印,发布阶段关闭 => '@debug'调试,''正式
+    if (debug !== '') {
+        showVconsole();
+    } else {
+        disableConsole();
+    }
+
+    //加载移动端控制台
+    function showVconsole() {
+        if (!vConsole) {
+            vConsole = new VConsole();
+        }
+    }
+
+    //正式版去除控制台打印
+    function disableConsole() {
+        console.log = () => {
+        };
+        console.error = () => {
+        };
+        console.info = () => {
+        };
+    }
+
+    function ready(callback) {
+        if (window.AlipayJSBridge) {
+            callback && callback();
+        } else {
+            document.title = '中信建投机构服务APP'
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
+        }
+    }
+
+    ready(function () {
+    });
+</script>
+<section id="root"></section>
+</body>
+
 </html>
