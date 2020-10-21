@@ -1,20 +1,10 @@
-const {createProxyMiddleware} = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const configs = require('../constant/index.js');
+
+const proxy = configs.default.proxy;
 
 module.exports = function (app) {
-    app.use(createProxyMiddleware('/api', {
-        target: 'https://zs-test.csc108.com/rest',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/api": ""
-        },
-    }));
-    app.use(createProxyMiddleware('/local', {
-        target: 'http://localhost:8080/spu',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-            "^/local": ""
-        },
-    }));
+    for( let k in proxy) {
+        app.use(createProxyMiddleware(k, proxy[k]));
+    }
 };
