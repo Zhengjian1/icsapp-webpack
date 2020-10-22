@@ -15,7 +15,7 @@ module.exports = merge(common, {
     devtool: 'none',
     output: {
         filename: 'js/[name].[contenthash:8].js',
-        path: resolve(PROJECT_PATH, './dist'),
+        path: resolve(PROJECT_PATH, './build'),
         publicPath: './',
     },
     plugins: [
