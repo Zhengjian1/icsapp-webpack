@@ -5,14 +5,16 @@ import { getPassData } from '@/utils/height_utils';
 import { BROWSER } from '@/utils/env';
 
 class DefaultLayout extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            passData: {},
-        };
-    }
     static propTypes = {
         args: PropTypes.object,
+    };
+
+    static defaultProps = {
+        args: {},
+    };
+
+    state = {
+        passData: {},
     };
 
     async componentDidMount() {
