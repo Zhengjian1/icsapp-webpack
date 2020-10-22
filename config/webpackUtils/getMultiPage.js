@@ -22,6 +22,9 @@ glob.sync(pattern).forEach((file) => {
                 chunks: [name],
                 inject: 'body',
                 cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
+                config: {
+                    debug: isDev ? true :false
+                },
                 minify: isDev
                     ? false
                     : {
