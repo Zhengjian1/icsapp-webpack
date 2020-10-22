@@ -2,92 +2,41 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <link rel="shortcut icon" href="./favicon.ico"/>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="./favicon.ico" />
     <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <title>icsapp-webpack</title>
-    <script>
-        (function(win, doc) {
-            var docEl = doc.documentElement;
-            function setRemUnit() {
-                var docWidth = docEl.clientWidth;
-                var rem = docWidth / 10;
-                // 按照iphone X的高度定制最大宽度
-                if (docWidth >= 812) {
-                    rem = 81.2;
-                }
-                docEl.style.fontSize = rem + 'px';
-            }
-
-            var resetRemUnit = null;
-
-            win.addEventListener('resize', function() {
-                clearTimeout(resetRemUnit);
-                resetRemUnit = setTimeout(setRemUnit, 200);
-            }, false);
-            win.addEventListener('pageshow', function(e) {
-                if (e.persisted) {
-                    clearTimeout(resetRemUnit);
-                    resetRemUnit = setTimeout(setRemUnit, 200);
-                }
-            }, false);
-
-            setRemUnit();
-
-            if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
-                var testEl = doc.createElement('div');
-                var fakeBody = doc.createElement('body');
-
-                testEl.style.border = '0.5px solid transparent';
-                fakeBody.appendChild(testEl);
-                docEl.appendChild(fakeBody);
-
-                if (testEl.offsetHeight === 1) {
-                    docEl.classList.add('hairlines');
-                }
-
-                docEl.removeChild(fakeBody);
-            }
-
-            if (doc.readyState === 'complete') {
-                doc.body.style.fontSize = 12 + 'px';
-            } else {
-                doc.addEventListener('DOMContentLoaded', function(e) {
-                    doc.body.style.fontSize = 12 + 'px';
-                }, false);
-            }
-        })(window, document);
-    </script>
+    <script src="./lib-flexible.js"> </script>
 </head>
 
 <body>
-<script src="./vconsole.min.js"></script>
-<% if(htmlWebpackPlugin.options.config.debug) { %>
-<script type="text/javascript">
-    let process_debug = true;
-    let vConsole = new VConsole();
-</script>
-<% } else { %>
-<script type="text/javascript">
-    let process_debug = false;
-</script>
-<% } %>
+    <% if(htmlWebpackPlugin.options.config.debug) { %>
+        <script src="./vconsole.min.js"></script>
+        <script type="text/javascript">
+            let process_debug = true;
+            let vConsole = new VConsole();
+        </script>
+    <% } else { %>
+        <script type="text/javascript">
+            let process_debug = false;
+        </script>
+    <% } %>
 
-<script>
-    function ready(callback) {
-        if (window.AlipayJSBridge) {
-            callback && callback();
-        } else {
-            document.title = '中信建投机构服务APP';
-            document.addEventListener('AlipayJSBridgeReady', callback, false);
+    <script>
+        function ready(callback) {
+            if (window.AlipayJSBridge) {
+                callback && callback();
+            } else {
+                document.title = '中信建投机构服务APP';
+                document.addEventListener('AlipayJSBridgeReady', callback, false);
+            }
         }
-    }
 
-    ready(function() {
-    });
-</script>
-<div id="root" style="height:100vh;width:100%"></div>
+        ready(function () {
+        });
+    </script>
+    <div id="root" style="height:100vh;width:100%"></div>
 </body>
 
 
