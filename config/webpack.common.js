@@ -60,12 +60,10 @@ module.exports = {
                 {
                     context: resolve(PROJECT_PATH, './public/asset'),
                     from: '*',
-                    to: resolve(PROJECT_PATH, './build'),
+                    to: resolve(PROJECT_PATH, isDev ? "./dist" : './build'),
                     toType: 'dir',
                 },
             ],
         }),
-        
-        
     ],
 };

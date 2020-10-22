@@ -13,7 +13,7 @@ module.exports = {
         dll: ['react', 'react-dom', 'antd-mobile', 'prop-types'],
     },
     output: {
-        path: path.join(PROJECT_PATH, 'build'),
+        path: path.join(PROJECT_PATH, 'dist'),
         filename: '[name].js',
         library: '[name]_library',
     },
@@ -21,7 +21,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         // dll
         new webpack.DllPlugin({
-            path: path.join(PROJECT_PATH, 'build', '[name]-manifest.json'),
+            path: path.join(PROJECT_PATH, 'dist', '[name]-manifest.json'),
             name: '[name]_library',
             context: PROJECT_PATH,
         }),

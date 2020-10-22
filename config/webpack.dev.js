@@ -7,7 +7,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const manifestJson = require('../build/dll-manifest.json');
+const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
@@ -18,7 +18,7 @@ module.exports = merge(common, {
     devtool: 'cheap-module-eval-source-map',
     output: {
         filename: 'js/[name].js',
-        path: resolve(PROJECT_PATH, './build'),
+        path: resolve(PROJECT_PATH, './dist'),
         // publicPath: './'
     },
     devServer: {
@@ -51,7 +51,7 @@ module.exports = merge(common, {
         new webpack.HotModuleReplacementPlugin(),
         new HardSourceWebpackPlugin(),
         new HardSourceWebpackPlugin.ExcludeModulePlugin({
-            test: /mini-css-extract-plugin[\\/]build[\\/]loader/
+            test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
         }),
         // dll
         new webpack.DllReferencePlugin({
@@ -60,7 +60,7 @@ module.exports = merge(common, {
         }),
         new AddAssetHtmlPlugin([
             {
-                filepath: resolve(PROJECT_PATH, './build/dll.js'),
+                filepath: resolve(PROJECT_PATH, './dist/dll.js'),
                 includeSourcemap: false,
                 hash: true,
             },
