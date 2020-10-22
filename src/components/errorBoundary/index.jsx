@@ -18,8 +18,6 @@ class ErrorBoundary extends React.Component {
         error.message = `${error.message} - componentStack: ${info.componentStack}`;
 
         console.error('error', error);
-
-        if (window && window.BJ_REPORT) window.BJ_REPORT.report(error, false, 'ui');
     }
 
     render() {
