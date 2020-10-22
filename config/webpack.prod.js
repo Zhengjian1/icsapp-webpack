@@ -6,7 +6,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 

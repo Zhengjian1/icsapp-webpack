@@ -79,7 +79,8 @@
         "core-js": "^2.6.11",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
-        "sven-dev-tools": "^1.0.4"
+        "sven-dev-tools": "^1.0.4",
+        "cross-env": "^7.0.2"
     },
     "husky": {
         "hooks": {
