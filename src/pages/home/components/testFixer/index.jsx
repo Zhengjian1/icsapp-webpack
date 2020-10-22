@@ -15,6 +15,18 @@ function TestFixer() {
                 }}>
                 test
             </div>
+            <div
+                className={style.wrap}
+                onClick={() => {
+                    window.AlipayJSBridge.call('showLoading', {
+                        text: '加载中...',
+                    });
+                    setTimeout(() => {
+                        window.AlipayJSBridge.call('hideLoading');
+                    }, 1000);
+                }}>
+                show
+            </div>
             <Card full>
                 <Card.Header title="测试flex自动加前缀和样式" extra={<span>this is extra</span>} />
                 <Card.Body>

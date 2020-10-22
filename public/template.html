@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>icsapp-webpack</title>
     <script>
-        (function (win, doc) {
+        (function(win, doc) {
             var docEl = doc.documentElement;
 
             function setRemUnit() {
@@ -22,11 +23,11 @@
 
             var resetRemUnit = null;
 
-            win.addEventListener('resize', function () {
+            win.addEventListener('resize', function() {
                 clearTimeout(resetRemUnit);
                 resetRemUnit = setTimeout(setRemUnit, 200);
             }, false);
-            win.addEventListener('pageshow', function (e) {
+            win.addEventListener('pageshow', function(e) {
                 if (e.persisted) {
                     clearTimeout(resetRemUnit);
                     resetRemUnit = setTimeout(setRemUnit, 200);
@@ -53,7 +54,7 @@
             if (doc.readyState === 'complete') {
                 doc.body.style.fontSize = 12 + 'px';
             } else {
-                doc.addEventListener('DOMContentLoaded', function (e) {
+                doc.addEventListener('DOMContentLoaded', function(e) {
                     doc.body.style.fontSize = 12 + 'px';
                 }, false);
             }
@@ -62,60 +63,33 @@
 </head>
 
 <body>
-    <script src="./vconsole.min.js"></script>
-    <% if(htmlWebpackPlugin.options.config.debug) {  %>
-        <script type="text/javascript">
-            let process_debug = true
-        </script>
-    <% } else { %>
-        <script type="text/javascript">
-            let process_debug = false
-        </script>
-    <% } %>
+<script src="./vconsole.min.js"></script>
+<% if(htmlWebpackPlugin.options.config.debug) { %>
+<script type="text/javascript">
+    let process_debug = true;
+    let vConsole = new VConsole();
+</script>
+<% } else { %>
+<script type="text/javascript">
+    let process_debug = false;
+</script>
+<% } %>
 
-    <script>
-        let debug = '@debug';
-        let vConsole;
-        //调试阶段打开日志打印,发布阶段关闭 => '@debug'调试,''正式
-        if (debug !== '') {
-            showVconsole();
+<script>
+    function ready(callback) {
+        if (window.AlipayJSBridge) {
+            callback && callback();
         } else {
-            disableConsole();
+            document.title = '中信建投机构服务APP';
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
         }
+    }
 
-        //加载移动端控制台
-        function showVconsole() {
-            if (!vConsole) {
-                vConsole = new VConsole();
-            }
-        }
-
-        //正式版去除控制台打印
-        function disableConsole() {
-            console.log = () => {
-            };
-            console.error = () => {
-            };
-            console.info = () => {
-            };
-        }
-
-        function ready(callback) {
-            if (window.AlipayJSBridge) {
-                callback && callback();
-            } else {
-                document.title = '中信建投机构服务APP';
-                document.addEventListener('AlipayJSBridgeReady', callback, false);
-            }
-        }
-
-        ready(function () {
-        });
-    </script>
-    <div id="root" style="height:100vh;width:100%"></div>
+    ready(function() {
+    });
+</script>
+<div id="root" style="height:100vh;width:100%"></div>
 </body>
-
-
 
 
 </html>

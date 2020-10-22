@@ -25,7 +25,7 @@ module.exports = merge(common, {
         }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[id].[contenthash:8].css'
+            chunkFilename: 'css/[id].[contenthash:8].css',
         }),
     ],
     optimization: {
@@ -34,7 +34,7 @@ module.exports = merge(common, {
             new TerserPlugin({
                 extractComments: false,
                 terserOptions: {
-                    compress: { pure_funcs: ['console.log'] },
+                    compress: { pure_funcs: ['console.log', 'console.debug'] },
                 },
             }),
             new OptimizeCssAssetsPlugin(),
