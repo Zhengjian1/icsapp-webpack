@@ -6,12 +6,17 @@ const WebpackBar = require('webpackbar');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const manifestJson = require('../dist/dll-manifest.json');
 const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
 const proxy = require('./webpackUtils/setupProxy.js');
+
+const isAnalyzer = process.env.analyzer === 'true';
+console.log(isAnalyzer,"isAnalyzer")
+
 
 module.exports = merge(common, {
     mode: 'development',
@@ -69,6 +74,7 @@ module.exports = merge(common, {
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css'
         }),
+        isAnalyzer && new BundleAnalyzerPlugin()
     ],
     optimization: {
         splitChunks: {
