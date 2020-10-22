@@ -13,6 +13,4 @@ function Layout() {
     );
 }
 
-export default WrapLayout(Layout)({
-    NavHeight, // 传入导航栏
-});
+export default WrapLayout({ NavHeight })(Layout);

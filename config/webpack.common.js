@@ -1,12 +1,12 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const values = require('postcss-modules-values');
 const getCssLoaders = require('./webpackUtils/getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
 const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
 const isDev = process.env.NODE_ENV !== 'production';
-
 
 module.exports = {
     stats: {
@@ -67,4 +67,5 @@ module.exports = {
             ],
         }),
     ],
+    // postcss: [ values ]
 };

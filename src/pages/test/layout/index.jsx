@@ -1,7 +1,5 @@
 import React from 'react';
 import style from './index.css';
-import { BROWSER } from '../../../utils/env';
-import { common_height } from '../../../utils/height_utils';
 
 export default class Test extends React.Component {
     constructor(props, context) {
@@ -9,10 +7,6 @@ export default class Test extends React.Component {
         this.state = {
             test: 'test',
         };
-    }
-
-    componentDidMount() {
-        common_height();
     }
 
     render() {

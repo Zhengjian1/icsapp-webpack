@@ -11,6 +11,7 @@ export const BROWSER = {
             ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
             android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
             iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+            isIphonex: /iphone/gi.test(u) && window.screen.height >= 812,
             iPad: u.indexOf('iPad') > -1, //是否iPad
             webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
             weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
