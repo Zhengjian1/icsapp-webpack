@@ -1,7 +1,7 @@
-import { getPassData } from '../utils/height_utils';
+import { common_height } from '../utils/height_utils';
 
 export async function go2app(id) {
-    let passData = await getPassData();
+    let passData = common_height();
 
     let param = {
         url: 'index',

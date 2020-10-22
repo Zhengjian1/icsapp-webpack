@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.less';
-import { getPassData } from '@/utils/height_utils';
-import { BROWSER } from '@/utils/env';
+import { common_height } from '../../utils/height_utils';
 
 class DefaultLayout extends React.Component {
     static propTypes = {
@@ -14,29 +13,22 @@ class DefaultLayout extends React.Component {
     };
 
     state = {
-        passData: {},
+        passData: common_height(),
     };
 
-    async componentDidMount() {
-        const { passData } = await getPassData();
-        this.setState({
-            passData,
-        });
-    }
-
     render() {
-        const { passData = {} } = this.state;
+        console.error(this.state);
         const { NavHeight } = this.props.args || {};
         return (
             <div className="app">
                 {/* 电池栏 */}
-                <div className={`height${passData.height}`} />
+                <div className={`height${this.state.passData.height}`} />
                 {/* 导航栏 */}
                 {NavHeight && <NavHeight />}
                 {/* 页面content */}
                 <div className="content">{this.props.children}</div>
                 {/* 适配isIphonex */}
-                {BROWSER.versions.isIphonex && <div className="height34" />}
+                {this.state.passData.iPhoneX && <div className="height40 footer" style={{ background: 'red' }} />}
             </div>
         );
     }
