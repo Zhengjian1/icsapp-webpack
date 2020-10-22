@@ -1,11 +1,12 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 const getCssLoaders = require('./webpackUtils/getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
 const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
 const isDev = process.env.NODE_ENV !== 'production';
+
 
 module.exports = {
     stats: {
@@ -20,9 +21,9 @@ module.exports = {
         alias: {
             '@/src': resolve(PROJECT_PATH, './src'),
             '@/components': resolve(PROJECT_PATH, './src/components'),
-            "@/images": resolve(PROJECT_PATH, './src/images'),
-            "@/utils": resolve(PROJECT_PATH, './src/utils'),
-            "@/models": resolve(PROJECT_PATH, './src/models'),
+            '@/images': resolve(PROJECT_PATH, './src/images'),
+            '@/utils': resolve(PROJECT_PATH, './src/utils'),
+            '@/models': resolve(PROJECT_PATH, './src/models'),
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
@@ -42,12 +43,12 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 100,
-                            name: isDev ? 'assets/[name].[ext]':'assets/[name].[hash:8].[ext]',
+                            name: isDev ? 'assets/[name].[ext]' : 'assets/[name].[hash:8].[ext]',
                             esModule: false,
                         },
                     },
                 ],
-            }
+            },
         ],
     },
     plugins: [
@@ -65,7 +66,5 @@ module.exports = {
                 },
             ],
         }),
-        
-        
     ],
 };

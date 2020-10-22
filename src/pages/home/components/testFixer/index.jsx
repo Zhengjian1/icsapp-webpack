@@ -6,6 +6,8 @@ function TestFixer() {
     return (
         <>
             <WhiteSpace size="lg" />
+
+            <div className={style.wrap}>test</div>
             <Card full>
                 <Card.Header title="测试flex自动加前缀和样式" extra={<span>this is extra</span>} />
                 <Card.Body>
