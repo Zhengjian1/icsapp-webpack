@@ -1,27 +1,27 @@
 {
-    "appname": "研究服务",
-    "namespace": "rs",
-    "debug": true,
-    "host": "127.0.0.1",
-    "port": 3000,
-    "env": "development",
-    "baseUrl": "/api",
-    "proxy": {
-        "/api": {
-            "target": "https://zs-test.csc108.com/rest",
-            "secure": false,
-            "changeOrigin": true,
-            "pathRewrite": {
-                "^/api": ""
-            }
-        },
-        "/local": {
-            "target": "http://localhost:8080/spu",
-            "secure": false,
-            "changeOrigin": true,
-            "pathRewrite": {
-                "^/local": ""
-            }
-        }
+  "appname": "研究服务",
+  "namespace": "rs",
+  "debug": true,
+  "host": "127.0.0.1",
+  "port": 3000,
+  "env": "development",
+  "baseUrl": "/api",
+  "proxy": {
+    "/api": {
+      "target": "https://zs-test.csc108.com/rest",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    },
+    "/local": {
+      "target": "http://localhost:8080/spu",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/local": ""
+      }
     }
+  }
 }

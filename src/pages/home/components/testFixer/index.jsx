@@ -1,13 +1,20 @@
 import React from 'react';
 import { Card, WhiteSpace } from 'antd-mobile';
 import style from './index.css';
+import { go2app } from '../../../../router/router';
 
 function TestFixer() {
     return (
         <>
             <WhiteSpace size="lg" />
 
-            <div className={style.wrap}>test</div>
+            <div
+                className={style.wrap}
+                onClick={() => {
+                    go2app('50000000');
+                }}>
+                test
+            </div>
             <Card full>
                 <Card.Header title="测试flex自动加前缀和样式" extra={<span>this is extra</span>} />
                 <Card.Body>
