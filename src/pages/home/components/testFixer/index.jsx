@@ -7,7 +7,7 @@ function TestFixer() {
         <>
             <WhiteSpace size="lg" />
             <Card full>
-                <Card.Header title="测试flex自动加前缀和样式1" extra={<span>this is extra</span>} />
+                <Card.Header title="测试flex自动加前缀和样式12" extra={<span>this is extra</span>} />
                 <Card.Body>
                     <div className={style.loc_title}>使用局部title样式</div>
                     <div className={style.global_title}>使用全局title样式</div>
