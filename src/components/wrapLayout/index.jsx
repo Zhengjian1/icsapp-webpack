@@ -8,12 +8,13 @@ class DefaultLayout extends React.Component {
     };
 
     render() {
-        const { header, footer } = this.props.args || {};
+        const { NavHeight } = this.props.args || {};
         return (
             <div className={style.app}>
-                {header && <div className={style.header} />}
+                <div className={style.battery}> 我是电池栏</div>
+                {NavHeight && <NavHeight />}
                 <div className={style.content}>{this.props.children}</div>
-                {footer && <div className={style.footer} />}
+                <div className={style.footer}>我是footer </div>
             </div>
         );
     }
