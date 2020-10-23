@@ -1,0 +1,18 @@
+// ctrl键直接跳转到对应文件
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"],
+            "@/src": ["src/pages"],
+            "@/components": ["src/components"],
+            "@/images":["src/images"],
+            "@/utils":["src/utils"],
+            "@/models": ["src/models"],
+            "@/pages": ["src/pages"],
+        }
+    },
+    "experimentalDecorators":true,
+    "exclude": ["node_modules", "dist"]
+}

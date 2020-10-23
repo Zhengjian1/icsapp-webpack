@@ -22,12 +22,6 @@
 }
 
 .global_title {
-}
-
-.global_title {
-}
-
-.global_title {
     composes: title from global;
 }
 
