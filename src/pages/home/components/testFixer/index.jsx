@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, WhiteSpace } from 'antd-mobile';
 import style from './index.css';
-import { go2app } from '../../../../router/router';
+import { router } from '@/src/router/router-base';
 
 function TestFixer() {
     return (
@@ -11,9 +11,10 @@ function TestFixer() {
             <div
                 className={style.wrap}
                 onClick={() => {
-                    go2app('50000000');
+                    router().push('res-report-detail');
+                    // router().open('88880002', 'allResearchService', null, 'allResearchService');
                 }}>
-                test
+                test test test
             </div>
             <div
                 className={style.wrap}

@@ -2,41 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="./favicon.ico"/>
     <meta name="viewport"
-        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>icsapp-webpack</title>
-    <script src="./lib-flexible.js"> </script>
+    <script src="./lib-flexible.js"></script>
 </head>
 
 <body>
-    <% if(htmlWebpackPlugin.options.config.debug) { %>
-        <script src="./vconsole.min.js"></script>
-        <script type="text/javascript">
-            let process_debug = true;
-            let vConsole = new VConsole();
-        </script>
-    <% } else { %>
-        <script type="text/javascript">
-            let process_debug = false;
-        </script>
-    <% } %>
+<% if(htmlWebpackPlugin.options.config.debug) { %>
+<script src="./vconsole.min.js"></script>
+<script type="text/javascript">
+    let vConsole = new VConsole();
+</script>
+<% } else { %>
+<script type="text/javascript">
+</script>
+<% } %>
 
-    <script>
-        function ready(callback) {
-            if (window.AlipayJSBridge) {
-                callback && callback();
-            } else {
-                document.title = '中信建投机构服务APP';
-                document.addEventListener('AlipayJSBridgeReady', callback, false);
-            }
+<script>
+    function ready(callback) {
+        if (window.AlipayJSBridge) {
+            callback && callback();
+        } else {
+            document.title = '中信建投机构服务APP';
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
         }
+    }
 
-        ready(function () {
-        });
-    </script>
-    <div id="root" style="height:100vh;width:100%"></div>
+    ready(function() {
+    });
+</script>
+<div id="root" style="height:100vh;width:100%"></div>
 </body>
 
 
