@@ -23,6 +23,7 @@ module.exports = {
             '@/images': resolve(PROJECT_PATH, './src/images'),
             '@/utils': resolve(PROJECT_PATH, './src/utils'),
             '@/models': resolve(PROJECT_PATH, './src/models'),
+            '@/pages': resolve(PROJECT_PATH, './src/pages')
         },
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },

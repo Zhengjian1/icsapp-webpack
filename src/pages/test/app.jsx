@@ -1,8 +1,8 @@
 import '@babel/polyfill';
-import '../commoncss/reset.css';
+import '@/pages/commoncss/reset.css';
 import { lazy } from 'react';
 import renderAPP from '@/utils/renderAPP';
-import home from '../../models/home';
+import home from '@/models/home';
 
 const Layout = lazy(() => import('./layout/index'));
 
