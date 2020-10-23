@@ -37,7 +37,11 @@ module.exports = {
             },
             ...getCssLoaders,
             {
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif|mp3)$/,
+                test: /\.md$/,
+                use: 'raw-loader'
+            },
+            {
+                test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp3)$/,
                 use: [
                     {
                         loader: 'url-loader',

@@ -59,6 +59,7 @@
         "postcss-px2rem-exclude": "0.0.6",
         "prettier": "^2.1.2",
         "qs": "^6.9.4",
+        "raw-loader": "^4.0.2",
         "react-hot-loader": "^4.13.0",
         "react-redux": "^7.2.1",
         "redux": "^4.0.5",

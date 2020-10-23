@@ -13,9 +13,40 @@ const common = require('./webpack.common.js');
 const PROJECT_PATH = process.cwd();
 const configs = require('./constant/index.js');
 const proxy = require('./webpackUtils/setupProxy.js');
-
 const isAnalyzer = process.env.analyzer === 'true';
-console.log(isAnalyzer,"isAnalyzer")
+
+// 插件
+const plugins = [
+    new WebpackBar({
+        name: '正在启动',
+        color: '#fa8c16',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HardSourceWebpackPlugin(),
+    new HardSourceWebpackPlugin.ExcludeModulePlugin({
+        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
+    }),
+    // dll
+    new webpack.DllReferencePlugin({
+        context: PROJECT_PATH,
+        manifest: manifestJson,
+    }),
+    new AddAssetHtmlPlugin([
+        {
+            filepath: resolve(PROJECT_PATH, './dist/dll.js'),
+            includeSourcemap: false,
+            hash: true,
+        },
+    ]),
+    new MiniCssExtractPlugin({
+        filename: 'css/[name].css',
+        chunkFilename: 'css/[id].css'
+    })
+];
+
+if(isAnalyzer) {
+    plugins.push(new BundleAnalyzerPlugin())
+}
 
 
 module.exports = merge(common, {
@@ -48,34 +79,7 @@ module.exports = merge(common, {
             `));
         },
     },
-    plugins: [
-        new WebpackBar({
-            name: '正在启动',
-            color: '#fa8c16',
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new HardSourceWebpackPlugin(),
-        new HardSourceWebpackPlugin.ExcludeModulePlugin({
-            test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
-        }),
-        // dll
-        new webpack.DllReferencePlugin({
-            context: PROJECT_PATH,
-            manifest: manifestJson,
-        }),
-        new AddAssetHtmlPlugin([
-            {
-                filepath: resolve(PROJECT_PATH, './dist/dll.js'),
-                includeSourcemap: false,
-                hash: true,
-            },
-        ]),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[id].css'
-        }),
-        isAnalyzer && new BundleAnalyzerPlugin()
-    ],
+    plugins:plugins,
     optimization: {
         splitChunks: {
             chunks: 'all',
