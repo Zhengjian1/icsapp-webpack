@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.less';
+import style from './index.css';
 import { common_height } from '../../utils/height_utils';
 
 class DefaultLayout extends React.Component {
@@ -9,13 +9,13 @@ class DefaultLayout extends React.Component {
 
     render() {
         return (
-            <div className="app">
+            <div className={style.app}>
                 {/* 电池栏 */}
-                <div className={`height${this.state.passData.height}`} />
+                <div className={style[`height${this.state.passData.height}`]} />
                 {/* 页面content */}
-                <div className="content">{this.props.children}</div>
+                <div className={style.content}>{this.props.children}</div>
                 {/* 适配isIphonex */}
-                {this.state.passData.iPhoneX && <div className="height40 footer" style={{ background: 'red' }} />}
+                {this.state.passData.iPhoneX && <div className={`${style.height40} ${style.footer}`} />}
             </div>
         );
     }

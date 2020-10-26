@@ -1,0 +1,28 @@
+.wrap {
+    width: 100%;
+    height: 100%;
+    /* background: green; */
+}
+
+.input {
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+
+.extra {
+    width: 100%;
+    height: 400px; /* no */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; /* no */
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background: red;
+}

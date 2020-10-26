@@ -30,7 +30,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jsx?|js)$/,
+                test: /\.(jsx?)$/,
                 loader: 'babel-loader',
                 options: { cacheDirectory: true },
                 exclude: /node_modules/,
@@ -38,7 +38,8 @@ module.exports = {
             ...getCssLoaders,
             {
                 test: /\.md$/,
-                use: 'raw-loader'
+                use: 'raw-loader',
+                exclude: /node_modules/,
             },
             {
                 test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|mp3)$/,
@@ -52,7 +53,8 @@ module.exports = {
                         },
                     },
                 ],
-            },
+                exclude: /node_modules/
+            }
         ],
     },
     plugins: [
