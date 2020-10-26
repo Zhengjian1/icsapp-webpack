@@ -1,4 +1,4 @@
-import { HTTPCONSTANTS } from '../http-contants';
+import { HTTPCONSTANTS } from '../http-constants';
 
 export default {
     responseFilter(config) {

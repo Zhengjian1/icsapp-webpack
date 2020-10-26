@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const WebpackBar = require('webpackbar');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -22,10 +22,10 @@ const plugins = [
         color: '#fa8c16',
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new HardSourceWebpackPlugin(),
-    new HardSourceWebpackPlugin.ExcludeModulePlugin({
-        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
-    }),
+    // new HardSourceWebpackPlugin(),
+    // new HardSourceWebpackPlugin.ExcludeModulePlugin({
+    //     test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
+    // }),
     // dll
     new webpack.DllReferencePlugin({
         context: PROJECT_PATH,
@@ -74,7 +74,7 @@ module.exports = merge(common, {
 =====================================================
 
     项目启动在${configs.host}:${configs.default.port}
-    
+
 =====================================================
             `));
         },
