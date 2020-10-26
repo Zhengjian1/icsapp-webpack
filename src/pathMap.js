@@ -133,6 +133,7 @@ const pages = [
     { name: 'cross-border-transaction-order', role: true },
     { name: 'demo1' },
     { name: 'demo2' },
+    { name: 'test1', auth: true, role: true },
 ];
 
 function init() {

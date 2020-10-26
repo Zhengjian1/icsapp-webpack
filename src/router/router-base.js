@@ -24,10 +24,11 @@ RouterBase.prototype = {
      * @param option
      */
     push: async function (url, option) {
+        console.log('execute method push(url,option) \n');
         intercept()
             .execute(url, option)
-            .then((option) => {
-                this.realPush(url, option);
+            .then((params) => {
+                this.realPush(params.url, params.option);
             })
             .catch((err) => {
                 console.error(err);
@@ -52,7 +53,8 @@ RouterBase.prototype = {
             url = url + '?' + Qs.stringify(option.data);
         }
         param.url = url;
-        console.log(`push url => ${url}`);
+        console.log(`push by url => ${url}`);
+        console.log('push by option => ', option);
         //判断是否是浏览器，走不同的跳转
         if (window.AlipayJSBridge) {
             window.AlipayJSBridge.call('pushWindow', param, (result) => {
@@ -71,11 +73,11 @@ RouterBase.prototype = {
      * @param indexAlias
      * @param interceptiId
      */
-    open: async function (appid, url, option, indexAlias, interceptiId) {
+    open: function (appid, url, option, indexAlias, interceptiId) {
         intercept()
             .execute(url, option, appid, indexAlias, interceptiId)
-            .then((option) => {
-                this.startApp(appid, url, option, indexAlias);
+            .then((params) => {
+                this.startApp(params.appid, params.url, params.option, params.indexAlias);
             })
             .catch((err) => {
                 console.error(err);
@@ -148,11 +150,10 @@ RouterBase.prototype = {
      * @return {Promise<void>}
      */
     loadIntercept: async function (url, option, id, indexAlias, interceptiId) {
-        intercept()
+        return await intercept()
             .execute(url, option, id, indexAlias, interceptiId)
             .catch((err) => {
                 console.error(err);
             });
-        // return await intercept().execute(url, option, id, indexAlias, interceptiId);
     },
 };
