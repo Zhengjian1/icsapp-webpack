@@ -1,6 +1,7 @@
 .wrap {
     width: 100%;
     height: 100%;
+    margin-bottom: 100px;
     /* background: green; */
 }
 
@@ -20,9 +21,14 @@
 
 .footer {
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: 0;
     bottom: 0;
-    height: 50px;
+    height: 100px;
     width: 100%;
+    font-size: 20px; /* no */
+    color: white;
     background: red;
 }

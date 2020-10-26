@@ -79,7 +79,7 @@ export default class Layout extends React.Component {
                     onBlur={() => {}}
                     extra={'%'}
                 />
-                <div className={style.footer}>footer</div>
+                <div className={style.footer}>提交</div>
             </div>
         );
     }
