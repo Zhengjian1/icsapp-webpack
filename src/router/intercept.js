@@ -24,65 +24,97 @@ Intercept.prototype = {
      * @return {Promise<void>}
      */
     execute: function (url, option, appid, indexAlias, interceptId) {
-        return new Promise(async (resolve, reject) => {
-            if (isEmpty(interceptId)) {
-                interceptId = appid;
-            }
-            console.log(`intercept url => ${url}`);
-            console.log(`intercept menus by appid => ${interceptId}`);
-            if (isEmpty(url)) {
-                console.error('url is undefined');
-                return reject('url is undefined');
-            }
-            if (option === null || option === undefined) {
-                option = {};
-            }
-
-            option.realUrl = url;
-            option.indexAlias = indexAlias;
-
-            return await this.checkPathMap(url, option, interceptId, resolve, reject);
-        });
+        let params = {
+            url: url,
+            option: option,
+            appid: appid,
+            indexAlias: indexAlias,
+            interceptId: interceptId,
+        };
+        return this.check(params)
+            .then((params) => this.authIntercept(params))
+            .then((params) => this.roleIntercept(params));
     },
 
     /**
-     * 检查url是否存在pathMap里面
+     * 跳转前检查
      */
-    checkPathMap: async function (url, option, interceptId, resolve, reject) {
-        //这里使用别名,是因为所有pdf都请求同一个地址,但拥有不同的权限,所以应该有一个别名来区分权限
-        if (!isEmpty(option.urlAlias)) {
+    check: function (params) {
+        if (isEmpty(params.interceptId)) {
+            params.interceptId = params.appid;
+        }
+        console.log(`intercept url => ${params.url}`);
+        console.log(`intercept menus by appid => ${params.interceptId}`);
+        if (isEmpty(params.url)) {
+            console.error('url is undefined');
+            return Promise.reject('url is undefined');
+        }
+        if (params.option === null || params.option === undefined) {
+            params.option = {};
+        }
+
+        params.option.realUrl = params.url;
+        params.option.indexAlias = params.indexAlias;
+        if (!isEmpty(params.option.urlAlias)) {
             //存在别名
-            url = option.urlAlias;
+            params.url = params.option.urlAlias;
         }
-        let page = pathMap.pagesMap[url];
-        console.log(`auth page => `, page);
-        if (isEmpty(page)) {
+        params.page = pathMap.pagesMap[params.url];
+        console.log(`find url in pathMap => `, params.page);
+        if (isEmpty(params.page)) {
             // 异常，地址在路由中不存在
-            return reject(`pathMap中不存在url => ${url}`);
+            return Promise.reject(`pathMap中不存在url => ${params.url}`);
         }
-        return await this.authIntercept(page, url, option, interceptId, resolve, reject);
+
+        return Promise.resolve(params);
     },
 
     /**
      * 登陆拦截
      */
-    authIntercept: async function (page, url, option, interceptId, resolve, reject) {
-        if (!isEmpty(page.auth)) {
+    authIntercept: function (params) {
+        console.log('\nauth start ==================================================');
+        console.log(`url => ${params.url}`);
+        console.log('option => ', params.option);
+        console.log('auth end ====================================================');
+        if (!isEmpty(params.page.auth)) {
             //进行登陆拦截
-            return reject('请先登陆');
+            return this.realAuth(params);
         }
-        return await this.roleIntercept(page, url, option, interceptId, resolve, reject);
+        return Promise.resolve(params);
+    },
+
+    /**
+     * 实际的登陆拦截逻辑
+     * @param params
+     * @return {Promise<never>}
+     */
+    realAuth: function (params) {
+        return Promise.reject('请先登陆');
     },
 
     /**
      * 权限拦截
      */
-    roleIntercept: async function (page, url, option, interceptId, resolve, reject) {
-        let needRole = !isEmpty(page.role);
+    roleIntercept: function (params) {
+        console.log('\nrole start ==================================================');
+        console.log(`url => ${params.url}`);
+        console.log('option => ', params.option);
+        console.log('role end ====================================================');
+        let needRole = !isEmpty(params.page.role);
         if (needRole) {
             //开始权限拦截
-            return reject('没有权限');
+            return this.realRole(params);
         }
-        return await resolve(option);
+        return Promise.resolve(params);
+    },
+
+    /**
+     * 实际的权限拦截逻辑
+     * @param params
+     * @return {Promise<never>}
+     */
+    realRole: function (params) {
+        return Promise.reject('没有权限');
     },
 };

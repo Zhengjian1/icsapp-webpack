@@ -7,14 +7,19 @@ function TestFixer() {
     return (
         <>
             <WhiteSpace size="lg" />
-
             <div
                 className={style.wrap}
                 onClick={() => {
-                    router().push('res-report-detail');
-                    // router().open('88880002', 'allResearchService', null, 'allResearchService');
+                    router().push('test1', {});
                 }}>
-                test test test
+                push button
+            </div>
+            <div
+                className={style.wrap}
+                onClick={() => {
+                    router().open('88880002', 'allResearchService', null, 'allResearchService');
+                }}>
+                open button
             </div>
             <div
                 className={style.wrap}
