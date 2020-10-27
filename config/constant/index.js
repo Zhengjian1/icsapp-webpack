@@ -22,6 +22,7 @@ glob.sync(pattern).forEach((file) => {
 
 configs.host = internalIp.v4.sync();
 configs.hostname = os.hostname();
+configs.sysType  = os.type();
 configs.map = new Map();
 // console.info(JSON.stringify(configs));
 module.exports = configs;

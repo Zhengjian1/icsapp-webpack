@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const WebpackBar = require('webpackbar');
-// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -22,10 +22,7 @@ const plugins = [
         color: '#fa8c16',
     }),
     new webpack.HotModuleReplacementPlugin(),
-    // new HardSourceWebpackPlugin(),
-    // new HardSourceWebpackPlugin.ExcludeModulePlugin({
-    //     test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
-    // }),
+
     // dll
     new webpack.DllReferencePlugin({
         context: PROJECT_PATH,
@@ -44,10 +41,22 @@ const plugins = [
     })
 ];
 
-if(isAnalyzer) {
-    plugins.push(new BundleAnalyzerPlugin())
+/******************************************************************
+    HardSourceWebpackPlugin + dll 据说能提升90%开发效率
+    本地开发唐旋mac终端报警，在windows上加上HardSourceWebpackPlugin,
+*******************************************************************/
+if (configs.sysType === "Windows_NT") {
+    plugins.push(
+        new HardSourceWebpackPlugin(),
+        new HardSourceWebpackPlugin.ExcludeModulePlugin({
+            test: /mini-css-extract-plugin[\\/]dist[\\/]loader/
+        }),
+    )
 }
 
+if (isAnalyzer) {
+    plugins.push(new BundleAnalyzerPlugin())
+}
 
 module.exports = merge(common, {
     mode: 'development',
@@ -79,7 +88,7 @@ module.exports = merge(common, {
             `));
         },
     },
-    plugins:plugins,
+    plugins: plugins,
     optimization: {
         splitChunks: {
             chunks: 'all',
