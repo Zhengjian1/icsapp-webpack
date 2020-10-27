@@ -137,10 +137,9 @@ const pages = [
 ];
 
 function init() {
-    console.error('=================init pathMap===================');
-    // console.error('VERSION', constants.VERSION);
-    // console.error("VERSION", constants.DATEVERSION);
-    console.error('================================================');
+    console.error('============================================');
+    console.error('=================init pathMap=================');
+    console.error('============================================');
     let pagesMap = {};
     for (let i = 0; i < pages.length; i++) {
         let page = pages[i];

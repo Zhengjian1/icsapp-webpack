@@ -2,7 +2,7 @@ import axios from 'axios';
 import { PrepareOption } from '../prepare/prepare-option';
 import { PerpareSign } from '../prepare/perpare-sign';
 import aixosFilter from '../filter/axios-filter';
-import { HTTPCONSTANTS } from '../http-contants';
+import { HTTPCONSTANTS } from '../http-constants';
 import BaseClient from 'sven-dev-tools/http/client/base-client';
 
 export default function AxiosClient(proxy) {
