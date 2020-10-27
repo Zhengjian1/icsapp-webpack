@@ -7,8 +7,7 @@
         "start": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
         "start:analyzer": "cross-env NODE_ENV=development analyzer=true webpack-dev-server --config ./config/webpack.dev.js",
         "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js",
-        "devdll": "webpack --config ./config/webpack.dll.js",
-        "server": "node ./biz/server.js"
+        "devdll": "webpack --config ./config/webpack.dll.js"
     },
     "keywords": [],
     "author": "",
@@ -44,8 +43,6 @@
         "husky": "^4.3.0",
         "internal-ip": "^6.1.0",
         "js-md5": "^0.7.3",
-        "koa": "^2.13.0",
-        "koa-static": "^5.0.0",
         "less": "^3.12.2",
         "less-loader": "^7.0.2",
         "lint-staged": "^10.4.0",

@@ -73,7 +73,7 @@ module.exports = merge(common, {
             console.log(chalk.green(`
 =====================================================
 
-    项目启动在${configs.host}:${configs.default.port}
+    项目启动在    http://${configs.host}:${configs.default.port}
     
 =====================================================
             `));

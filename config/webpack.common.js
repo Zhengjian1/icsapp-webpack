@@ -5,6 +5,7 @@ const getCssLoaders = require('./webpackUtils/getCssLoaders.js');
 const PROJECT_PATH = process.cwd();
 const { entries, htmlPlugin } = require('./webpackUtils/getMultiPage.js');
 const configs = require('./constant/index.js');
+const alias = require(`${PROJECT_PATH}/alias.js`);
 const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -17,14 +18,7 @@ module.exports = {
     entry: entries,
     resolve: {
         extensions: ['.jsx', '.js', 'json'],
-        alias: {
-            '@/src': resolve(PROJECT_PATH, './src'),
-            '@/components': resolve(PROJECT_PATH, './src/components'),
-            '@/images': resolve(PROJECT_PATH, './src/images'),
-            '@/utils': resolve(PROJECT_PATH, './src/utils'),
-            '@/models': resolve(PROJECT_PATH, './src/models'),
-            '@/pages': resolve(PROJECT_PATH, './src/pages')
-        },
+        alias:alias,
         modules: [resolve(PROJECT_PATH, 'node_modules')],
     },
     module: {
