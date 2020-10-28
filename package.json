@@ -13,6 +13,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@alifd/field": "^1.4.5",
         "@babel/core": "^7.12.1",
         "@babel/plugin-proposal-class-properties": "^7.12.1",
         "@babel/plugin-proposal-decorators": "^7.12.1",
